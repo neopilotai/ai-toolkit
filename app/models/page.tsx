@@ -229,13 +229,13 @@ export default function ModelsPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'language':
-        return 'bg-blue-900/30 text-blue-300';
+        return 'bg-primary/20 text-primary';
       case 'embedding':
-        return 'bg-purple-900/30 text-purple-300';
+        return 'bg-info/20 text-info';
       case 'image':
-        return 'bg-pink-900/30 text-pink-300';
+        return 'bg-warning/20 text-warning';
       default:
-        return 'bg-gray-900/30 text-gray-300';
+        return 'bg-muted/20 text-muted-foreground';
     }
   };
 
@@ -287,7 +287,7 @@ export default function ModelsPage() {
                     onClick={() => setSelectedProvider(provider)}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       selectedProvider === provider
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-primary text-background'
                         : 'bg-input-bg text-foreground hover:bg-hover-bg'
                     }`}
                   >
@@ -312,7 +312,7 @@ export default function ModelsPage() {
                     onClick={() => setSelectedType(type)}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       selectedType === type
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-primary text-background'
                         : 'bg-input-bg text-foreground hover:bg-hover-bg'
                     }`}
                   >
@@ -337,7 +337,7 @@ export default function ModelsPage() {
                     onClick={() => setSelectedTag(tag)}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       selectedTag === tag
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-primary text-background'
                         : 'bg-input-bg text-foreground hover:bg-hover-bg'
                     }`}
                   >
