@@ -51,32 +51,31 @@ export default function DashboardPage() {
             return (
               <Card key={idx}>
                 <div className="flex items-start justify-between">
-                  <div>
-                    <CardDescription className="text-xs">{stat.label}</CardDescription>
-                    <div className="text-3xl font-bold text-foreground mt-2">{stat.value}</div>
-                  </div>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                </div>
-              </Card>
-            )
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-          {/* Quick Links */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Quick Links</CardTitle>
-            </CardHeader>
-            <div className="px-6 pb-6 space-y-3">
+            <div>
+              <a
+                href="/models"
+                className="flex items-center justify-between p-3 rounded-lg bg-input-bg hover:bg-hover-bg transition-colors group"
+              >
+                <span className="text-sm text-foreground group-hover:text-primary transition-colors">
+                  Browse Models
+                </span>
+                <span className="text-lg">→</span>
+              </a>
               <a
                 href="/playground"
                 className="flex items-center justify-between p-3 rounded-lg bg-input-bg hover:bg-hover-bg transition-colors group"
               >
                 <span className="text-sm text-foreground group-hover:text-primary transition-colors">
                   Try Playground
+                </span>
+                <span className="text-lg">→</span>
+              </a>
+              <a
+                href="/examples"
+                className="flex items-center justify-between p-3 rounded-lg bg-input-bg hover:bg-hover-bg transition-colors group"
+              >
+                <span className="text-sm text-foreground group-hover:text-primary transition-colors">
+                  Browse Examples
                 </span>
                 <span className="text-lg">→</span>
               </a>

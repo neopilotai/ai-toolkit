@@ -18,6 +18,9 @@ export function Header() {
             <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">
               Dashboard
             </a>
+            <a href="/models" className="text-muted-foreground hover:text-foreground transition-colors">
+              Models
+            </a>
             <a href="/playground" className="text-muted-foreground hover:text-foreground transition-colors">
               Playground
             </a>

@@ -29,9 +29,11 @@ export default function Home() {
             <Button variant="primary" size="lg">
               Launch Playground
             </Button>
-            <Button variant="outline" size="lg">
-              View Documentation
-            </Button>
+            <a href="/models">
+              <Button variant="outline" size="lg">
+                Browse Models
+              </Button>
+            </a>
           </div>
 
           {/* Quick Stats */}
