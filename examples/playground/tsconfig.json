@@ -2,7 +2,11 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "es6"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es6"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,9 +24,68 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../../packages/ai"
+    },
+    {
+      "path": "../../packages/anthropic"
+    },
+    {
+      "path": "../../packages/azure"
+    },
+    {
+      "path": "../../packages/cohere"
+    },
+    {
+      "path": "../../packages/deepseek"
+    },
+    {
+      "path": "../../packages/fireworks"
+    },
+    {
+      "path": "../../packages/google"
+    },
+    {
+      "path": "../../packages/google-vertex"
+    },
+    {
+      "path": "../../packages/groq"
+    },
+    {
+      "path": "../../packages/mistral"
+    },
+    {
+      "path": "../../packages/openai"
+    },
+    {
+      "path": "../../packages/perplexity"
+    },
+    {
+      "path": "../../packages/provider"
+    },
+    {
+      "path": "../../packages/provider-utils"
+    },
+    {
+      "path": "../../packages/react"
+    },
+    {
+      "path": "../../packages/xai"
+    }
+  ]
 }

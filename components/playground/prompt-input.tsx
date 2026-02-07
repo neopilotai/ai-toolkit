@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Play, Trash2 } from 'lucide-react'
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Play, Trash2 } from 'lucide-react';
 
 interface PromptInputProps {
-  value: string
-  onChange: (value: string) => void
-  onSubmit: () => void
-  onClear: () => void
-  isLoading: boolean
+  value: string;
+  onChange: (value: string) => void;
+  onSubmit: () => void;
+  onClear: () => void;
+  isLoading: boolean;
 }
 
 export function PromptInput({
@@ -19,26 +19,26 @@ export function PromptInput({
   onClear,
   isLoading,
 }: PromptInputProps) {
-  const [rows, setRows] = useState(4)
+  const [rows, setRows] = useState(4);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && e.ctrlKey) {
-      e.preventDefault()
-      onSubmit()
+      e.preventDefault();
+      onSubmit();
     }
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.target.value)
+    onChange(e.target.value);
     const textareaLineHeight = parseInt(
-      window.getComputedStyle(e.target).lineHeight
-    )
+      window.getComputedStyle(e.target).lineHeight,
+    );
     const newRows = Math.max(
       4,
-      Math.ceil((e.target.scrollHeight - 16) / textareaLineHeight)
-    )
-    setRows(Math.min(newRows, 15))
-  }
+      Math.ceil((e.target.scrollHeight - 16) / textareaLineHeight),
+    );
+    setRows(Math.min(newRows, 15));
+  };
 
   return (
     <div className="space-y-4">
@@ -82,5 +82,5 @@ export function PromptInput({
         </Button>
       </div>
     </div>
-  )
+  );
 }

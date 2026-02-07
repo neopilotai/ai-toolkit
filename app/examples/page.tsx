@@ -1,9 +1,14 @@
-'use client'
+'use client';
 
-import { Header } from '@/components/header'
-import { Card, CardTitle, CardDescription, CardHeader } from '@/components/ui/card'
-import { useState } from 'react'
-import { Search, Copy, ExternalLink } from 'lucide-react'
+import { Header } from '@/components/header';
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardHeader,
+} from '@/components/ui/card';
+import { useState } from 'react';
+import { Search, Copy, ExternalLink } from 'lucide-react';
 
 const EXAMPLES = [
   {
@@ -48,7 +53,8 @@ console.log(result.object);`,
   {
     id: 3,
     title: 'Stream Text Response',
-    description: 'Stream AI responses in real-time with the streamText function',
+    description:
+      'Stream AI responses in real-time with the streamText function',
     category: 'Streaming',
     provider: 'Groq',
     code: `import { streamText } from "ai";
@@ -120,30 +126,33 @@ const embedding2 = await generateEmbedding({
   value: "Hi universe",
 });`,
   },
-]
+];
 
-const CATEGORIES = ['All', ...new Set(EXAMPLES.map(e => e.category))]
-const PROVIDERS = ['All', ...new Set(EXAMPLES.map(e => e.provider))]
+const CATEGORIES = ['All', ...new Set(EXAMPLES.map(e => e.category))];
+const PROVIDERS = ['All', ...new Set(EXAMPLES.map(e => e.provider))];
 
 export default function ExamplesPage() {
-  const [search, setSearch] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedProvider, setSelectedProvider] = useState('All')
-  const [copiedId, setCopiedId] = useState<number | null>(null)
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedProvider, setSelectedProvider] = useState('All');
+  const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const filteredExamples = EXAMPLES.filter(example => {
-    const matchesSearch = example.title.toLowerCase().includes(search.toLowerCase()) ||
-      example.description.toLowerCase().includes(search.toLowerCase())
-    const matchesCategory = selectedCategory === 'All' || example.category === selectedCategory
-    const matchesProvider = selectedProvider === 'All' || example.provider === selectedProvider
-    return matchesSearch && matchesCategory && matchesProvider
-  })
+    const matchesSearch =
+      example.title.toLowerCase().includes(search.toLowerCase()) ||
+      example.description.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'All' || example.category === selectedCategory;
+    const matchesProvider =
+      selectedProvider === 'All' || example.provider === selectedProvider;
+    return matchesSearch && matchesCategory && matchesProvider;
+  });
 
   const handleCopy = (id: number, code: string) => {
-    navigator.clipboard.writeText(code)
-    setCopiedId(id)
-    setTimeout(() => setCopiedId(null), 2000)
-  }
+    navigator.clipboard.writeText(code);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -167,7 +176,7 @@ export default function ExamplesPage() {
               type="text"
               placeholder="Search examples..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={e => setSearch(e.target.value)}
               className="w-full bg-input-bg border border-border rounded-lg pl-10 pr-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -222,7 +231,9 @@ export default function ExamplesPage() {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <CardTitle className="text-lg">{example.title}</CardTitle>
-                      <CardDescription className="mt-2">{example.description}</CardDescription>
+                      <CardDescription className="mt-2">
+                        {example.description}
+                      </CardDescription>
                     </div>
                   </div>
                   <div className="flex items-center justify-between gap-2">
@@ -263,13 +274,15 @@ export default function ExamplesPage() {
             ))
           ) : (
             <div className="col-span-full text-center py-12">
-              <p className="text-muted-foreground">No examples found matching your filters</p>
+              <p className="text-muted-foreground">
+                No examples found matching your filters
+              </p>
             </div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Check({ className }: { className: string }) {
@@ -287,5 +300,5 @@ function Check({ className }: { className: string }) {
         d="M5 13l4 4L19 7"
       />
     </svg>
-  )
+  );
 }

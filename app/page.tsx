@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { Header } from '@/components/header'
-import { Button } from '@/components/ui/button'
-import { Card, CardTitle, CardDescription } from '@/components/ui/card'
-import { Zap, Brain, Code, Sparkles } from 'lucide-react'
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { Card, CardTitle, CardDescription } from '@/components/ui/card';
+import { Zap, Brain, Code, Sparkles } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -15,13 +15,17 @@ export default function Home() {
         <div className="text-center space-y-8">
           <div className="space-y-4">
             <div className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/5">
-              <span className="text-sm font-medium text-primary">Welcome to Khulnasoft AI Toolkit</span>
+              <span className="text-sm font-medium text-primary">
+                Welcome to Khulnasoft AI Toolkit
+              </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-foreground text-balance">
               Build AI-Powered Applications
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Explore and experiment with the most comprehensive open-source AI toolkit. Test different providers, models, and functions all in one place.
+              Explore and experiment with the most comprehensive open-source AI
+              toolkit. Test different providers, models, and functions all in
+              one place.
             </p>
           </div>
 
@@ -29,24 +33,32 @@ export default function Home() {
             <Button variant="primary" size="lg">
               Launch Playground
             </Button>
-            <Button variant="outline" size="lg">
-              View Documentation
-            </Button>
+            <a href="/models">
+              <Button variant="outline" size="lg">
+                Browse Models
+              </Button>
+            </a>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-16 border-t border-border">
             <div className="text-center space-y-2">
               <div className="text-3xl font-bold text-primary">50+</div>
-              <div className="text-sm text-muted-foreground">AI Providers Supported</div>
+              <div className="text-sm text-muted-foreground">
+                AI Providers Supported
+              </div>
             </div>
             <div className="text-center space-y-2">
               <div className="text-3xl font-bold text-primary">100+</div>
-              <div className="text-sm text-muted-foreground">Example Functions</div>
+              <div className="text-sm text-muted-foreground">
+                Example Functions
+              </div>
             </div>
             <div className="text-center space-y-2">
               <div className="text-3xl font-bold text-primary">Full</div>
-              <div className="text-sm text-muted-foreground">Type-Safe Development</div>
+              <div className="text-sm text-muted-foreground">
+                Type-Safe Development
+              </div>
             </div>
           </div>
         </div>
@@ -55,8 +67,12 @@ export default function Home() {
       {/* Features Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-border">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Key Features</h2>
-          <p className="text-lg text-muted-foreground">Everything you need to build with AI</p>
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            Key Features
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Everything you need to build with AI
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -108,7 +124,9 @@ export default function Home() {
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-lg">Interactive Playground</CardTitle>
+                <CardTitle className="text-lg">
+                  Interactive Playground
+                </CardTitle>
                 <CardDescription className="mt-2">
                   Test and experiment with all AI functions in real-time
                 </CardDescription>
@@ -121,9 +139,12 @@ export default function Home() {
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-border">
         <div className="bg-primary/5 border border-primary/20 rounded-lg p-12 text-center space-y-6">
-          <h2 className="text-4xl font-bold text-foreground">Ready to Build?</h2>
+          <h2 className="text-4xl font-bold text-foreground">
+            Ready to Build?
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore the playground to test different AI models, providers, and functions with your own prompts.
+            Explore the playground to test different AI models, providers, and
+            functions with your own prompts.
           </p>
           <Button variant="primary" size="lg">
             Start Experimenting
@@ -138,5 +159,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

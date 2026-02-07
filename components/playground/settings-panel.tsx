@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-import { useState } from 'react'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from 'react';
 
 interface SettingsPanelProps {
-  temperature: number
-  maxTokens: number
-  topP: number
-  onTemperatureChange: (value: number) => void
-  onMaxTokensChange: (value: number) => void
-  onTopPChange: (value: number) => void
+  temperature: number;
+  maxTokens: number;
+  topP: number;
+  onTemperatureChange: (value: number) => void;
+  onMaxTokensChange: (value: number) => void;
+  onTopPChange: (value: number) => void;
 }
 
 export function SettingsPanel({
@@ -29,8 +29,12 @@ export function SettingsPanel({
         {/* Temperature */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-foreground">Temperature</label>
-            <span className="text-sm text-muted-foreground">{temperature.toFixed(2)}</span>
+            <label className="text-sm font-medium text-foreground">
+              Temperature
+            </label>
+            <span className="text-sm text-muted-foreground">
+              {temperature.toFixed(2)}
+            </span>
           </div>
           <input
             type="range"
@@ -38,7 +42,7 @@ export function SettingsPanel({
             max="2"
             step="0.1"
             value={temperature}
-            onChange={(e) => onTemperatureChange(parseFloat(e.target.value))}
+            onChange={e => onTemperatureChange(parseFloat(e.target.value))}
             className="w-full h-2 bg-input-bg rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <p className="text-xs text-muted-foreground mt-1">
@@ -49,7 +53,9 @@ export function SettingsPanel({
         {/* Max Tokens */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-foreground">Max Tokens</label>
+            <label className="text-sm font-medium text-foreground">
+              Max Tokens
+            </label>
             <span className="text-sm text-muted-foreground">{maxTokens}</span>
           </div>
           <input
@@ -58,7 +64,7 @@ export function SettingsPanel({
             max="4000"
             step="100"
             value={maxTokens}
-            onChange={(e) => onMaxTokensChange(parseInt(e.target.value))}
+            onChange={e => onMaxTokensChange(parseInt(e.target.value))}
             className="w-full h-2 bg-input-bg rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <p className="text-xs text-muted-foreground mt-1">
@@ -70,7 +76,9 @@ export function SettingsPanel({
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium text-foreground">Top P</label>
-            <span className="text-sm text-muted-foreground">{topP.toFixed(2)}</span>
+            <span className="text-sm text-muted-foreground">
+              {topP.toFixed(2)}
+            </span>
           </div>
           <input
             type="range"
@@ -78,7 +86,7 @@ export function SettingsPanel({
             max="1"
             step="0.05"
             value={topP}
-            onChange={(e) => onTopPChange(parseFloat(e.target.value))}
+            onChange={e => onTopPChange(parseFloat(e.target.value))}
             className="w-full h-2 bg-input-bg rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <p className="text-xs text-muted-foreground mt-1">
@@ -87,5 +95,5 @@ export function SettingsPanel({
         </div>
       </div>
     </Card>
-  )
+  );
 }

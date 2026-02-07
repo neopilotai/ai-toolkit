@@ -7,20 +7,20 @@
  */
 export function formatError(error: unknown): string {
   if (error instanceof Error) {
-    return error.message
+    return error.message;
   }
   if (typeof error === 'string') {
-    return error
+    return error;
   }
-  return 'An unknown error occurred'
+  return 'An unknown error occurred';
 }
 
 /**
  * Truncate text to a specified length
  */
 export function truncateText(text: string, length: number): string {
-  if (text.length <= length) return text
-  return text.slice(0, length) + '...'
+  if (text.length <= length) return text;
+  return text.slice(0, length) + '...';
 }
 
 /**
@@ -28,9 +28,9 @@ export function truncateText(text: string, length: number): string {
  */
 export function formatJSON(data: unknown, indent = 2): string {
   try {
-    return JSON.stringify(data, null, indent)
+    return JSON.stringify(data, null, indent);
   } catch {
-    return String(data)
+    return String(data);
   }
 }
 
@@ -39,10 +39,10 @@ export function formatJSON(data: unknown, indent = 2): string {
  */
 export function isValidUrl(url: string): boolean {
   try {
-    new URL(url)
-    return true
+    new URL(url);
+    return true;
   } catch {
-    return false
+    return false;
   }
 }
 
@@ -50,7 +50,7 @@ export function isValidUrl(url: string): boolean {
  * Generate a random ID for components
  */
 export function generateId(prefix = 'id'): string {
-  return `${prefix}-${Math.random().toString(36).slice(2, 11)}`
+  return `${prefix}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 /**
@@ -58,19 +58,19 @@ export function generateId(prefix = 'id'): string {
  */
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout | null = null
+  let timeout: NodeJS.Timeout | null = null;
 
   return function executedFunction(...args: Parameters<T>) {
     const later = () => {
-      timeout = null
-      func(...args)
-    }
+      timeout = null;
+      func(...args);
+    };
 
-    if (timeout) clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 /**
@@ -78,9 +78,9 @@ export function debounce<T extends (...args: any[]) => any>(
  */
 export async function copyToClipboard(text: string): Promise<boolean> {
   try {
-    await navigator.clipboard.writeText(text)
-    return true
+    await navigator.clipboard.writeText(text);
+    return true;
   } catch {
-    return false
+    return false;
   }
 }
