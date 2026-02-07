@@ -1,23 +1,28 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Copy, Download, Loader } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react';
+import { Copy, Download, Loader } from 'lucide-react';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface ModelResponse {
-  content: string
-  tokens: number
-  cost: number
-  time: number
+  content: string;
+  tokens: number;
+  cost: number;
+  time: number;
 }
 
 interface ModelCardProps {
-  provider: string
-  model: string
-  response?: ModelResponse
-  isLoading: boolean
-  error?: string
+  provider: string;
+  model: string;
+  response?: ModelResponse;
+  isLoading: boolean;
+  error?: string;
 }
 
 export function ModelCard({
@@ -27,30 +32,30 @@ export function ModelCard({
   isLoading,
   error,
 }: ModelCardProps) {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     if (response?.content) {
-      navigator.clipboard.writeText(response.content)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      navigator.clipboard.writeText(response.content);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
-  }
+  };
 
   const handleDownload = () => {
     if (response?.content) {
-      const element = document.createElement('a')
+      const element = document.createElement('a');
       element.setAttribute(
         'href',
-        'data:text/plain;charset=utf-8,' + encodeURIComponent(response.content)
-      )
-      element.setAttribute('download', `${model}-response.txt`)
-      element.style.display = 'none'
-      document.body.appendChild(element)
-      element.click()
-      document.body.removeChild(element)
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(response.content),
+      );
+      element.setAttribute('download', `${model}-response.txt`);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
     }
-  }
+  };
 
   return (
     <Card className="flex flex-col h-full overflow-hidden hover:border-primary/50 transition-colors">
@@ -69,7 +74,9 @@ export function ModelCard({
         {isLoading ? (
           <div className="flex flex-col items-center justify-center h-full gap-4">
             <div className="w-8 h-8 border-3 border-primary/30 border-t-primary rounded-full animate-spin" />
-            <p className="text-sm text-muted-foreground">Generating response...</p>
+            <p className="text-sm text-muted-foreground">
+              Generating response...
+            </p>
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
@@ -137,5 +144,5 @@ export function ModelCard({
         )}
       </div>
     </Card>
-  )
+  );
 }

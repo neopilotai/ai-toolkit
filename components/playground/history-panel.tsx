@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import { Trash2, RotateCcw } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Trash2, RotateCcw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface HistoryItem {
-  id: string
-  prompt: string
-  timestamp: Date
+  id: string;
+  prompt: string;
+  timestamp: Date;
 }
 
 interface HistoryPanelProps {
-  history: HistoryItem[]
-  onSelect: (item: HistoryItem) => void
-  onClear: () => void
+  history: HistoryItem[];
+  onSelect: (item: HistoryItem) => void;
+  onClear: () => void;
 }
 
 export function HistoryPanel({
@@ -43,7 +43,7 @@ export function HistoryPanel({
             No history yet
           </p>
         ) : (
-          history.map((item) => (
+          history.map(item => (
             <button
               key={item.id}
               onClick={() => onSelect(item)}
@@ -60,5 +60,5 @@ export function HistoryPanel({
         )}
       </div>
     </Card>
-  )
+  );
 }

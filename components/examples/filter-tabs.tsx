@@ -1,13 +1,18 @@
-'use client'
+'use client';
 
 interface FilterTabsProps {
-  label: string
-  items: string[]
-  selected: string
-  onSelect: (item: string) => void
+  label: string;
+  items: string[];
+  selected: string;
+  onSelect: (item: string) => void;
 }
 
-export function FilterTabs({ label, items, selected, onSelect }: FilterTabsProps) {
+export function FilterTabs({
+  label,
+  items,
+  selected,
+  onSelect,
+}: FilterTabsProps) {
   return (
     <div className="space-y-2">
       <div className="text-sm font-medium text-foreground">{label}</div>
@@ -27,5 +32,5 @@ export function FilterTabs({ label, items, selected, onSelect }: FilterTabsProps
         ))}
       </div>
     </div>
-  )
+  );
 }

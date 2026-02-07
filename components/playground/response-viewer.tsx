@@ -1,33 +1,40 @@
-'use client'
+'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
-import { Copy, Download, Loader } from 'lucide-react'
-import { useState } from 'react'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Copy, Download, Loader } from 'lucide-react';
+import { useState } from 'react';
 
 interface ResponseViewerProps {
-  response: string
-  loading: boolean
-  onCopy: () => void
+  response: string;
+  loading: boolean;
+  onCopy: () => void;
 }
 
-export function ResponseViewer({ response, loading, onCopy }: ResponseViewerProps) {
-  const [copied, setCopied] = useState(false)
+export function ResponseViewer({
+  response,
+  loading,
+  onCopy,
+}: ResponseViewerProps) {
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    onCopy()
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    onCopy();
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleDownload = () => {
-    const element = document.createElement('a')
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(response))
-    element.setAttribute('download', 'response.txt')
-    element.style.display = 'none'
-    document.body.appendChild(element)
-    element.click()
-    document.body.removeChild(element)
-  }
+    const element = document.createElement('a');
+    element.setAttribute(
+      'href',
+      'data:text/plain;charset=utf-8,' + encodeURIComponent(response),
+    );
+    element.setAttribute('download', 'response.txt');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
 
   if (loading) {
     return (
@@ -40,7 +47,7 @@ export function ResponseViewer({ response, loading, onCopy }: ResponseViewerProp
           <span className="text-sm">Generating response...</span>
         </div>
       </Card>
-    )
+    );
   }
 
   if (!response) {
@@ -53,7 +60,7 @@ export function ResponseViewer({ response, loading, onCopy }: ResponseViewerProp
           Run a prompt to see the response here
         </div>
       </Card>
-    )
+    );
   }
 
   return (
@@ -67,7 +74,11 @@ export function ResponseViewer({ response, loading, onCopy }: ResponseViewerProp
               className="p-2 rounded-lg hover:bg-hover-bg transition-colors text-muted-foreground hover:text-foreground"
               title="Copy response"
             >
-              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              {copied ? (
+                <Check className="w-4 h-4" />
+              ) : (
+                <Copy className="w-4 h-4" />
+              )}
             </button>
             <button
               onClick={handleDownload}
@@ -85,7 +96,7 @@ export function ResponseViewer({ response, loading, onCopy }: ResponseViewerProp
         </div>
       </div>
     </Card>
-  )
+  );
 }
 
 function Check({ className }: { className: string }) {
@@ -103,5 +114,5 @@ function Check({ className }: { className: string }) {
         d="M5 13l4 4L19 7"
       />
     </svg>
-  )
+  );
 }

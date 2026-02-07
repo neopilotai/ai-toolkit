@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface ModelSelectorProps {
-  selectedModels: { provider: string; model: string }[]
-  onAdd: () => void
-  onRemove: (index: number) => void
-  maxModels?: number
+  selectedModels: { provider: string; model: string }[];
+  onAdd: () => void;
+  onRemove: (index: number) => void;
+  maxModels?: number;
 }
 
 const AVAILABLE_PROVIDERS = [
@@ -47,7 +47,7 @@ const AVAILABLE_PROVIDERS = [
     name: 'Cohere',
     models: ['command-r-plus', 'command-r', 'command-nightly'],
   },
-]
+];
 
 export function ModelSelector({
   selectedModels,
@@ -98,5 +98,5 @@ export function ModelSelector({
         </div>
       )}
     </div>
-  )
+  );
 }

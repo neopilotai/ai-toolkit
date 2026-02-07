@@ -1,24 +1,29 @@
-'use client'
+'use client';
 
-import { Header } from '@/components/header'
-import { Card, CardTitle, CardDescription, CardHeader } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { useState, useEffect, useMemo } from 'react'
-import { Search, Filter, Copy, ExternalLink } from 'lucide-react'
+import { Header } from '@/components/header';
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardHeader,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useState, useEffect, useMemo } from 'react';
+import { Search, Filter, Copy, ExternalLink } from 'lucide-react';
 
 interface Model {
-  id: string
-  name: string
-  provider: string
-  type: 'language' | 'embedding' | 'image'
-  contextWindow: number
-  maxTokens: number
+  id: string;
+  name: string;
+  provider: string;
+  type: 'language' | 'embedding' | 'image';
+  contextWindow: number;
+  maxTokens: number;
   pricing?: {
-    input: string
-    output: string
-  }
-  tags: string[]
-  capabilities: string[]
+    input: string;
+    output: string;
+  };
+  tags: string[];
+  capabilities: string[];
 }
 
 const MODELS: Model[] = [
@@ -187,49 +192,52 @@ const MODELS: Model[] = [
     tags: ['fast', 'cost-effective'],
     capabilities: ['Text Generation', 'Ultra Fast', 'Budget Friendly'],
   },
-]
+];
 
-const PROVIDERS = ['All', ...new Set(MODELS.map(m => m.provider))].sort()
-const MODEL_TYPES = ['All', 'language', 'embedding', 'image']
-const ALL_TAGS = ['All', ...new Set(MODELS.flatMap(m => m.tags))].sort()
+const PROVIDERS = ['All', ...new Set(MODELS.map(m => m.provider))].sort();
+const MODEL_TYPES = ['All', 'language', 'embedding', 'image'];
+const ALL_TAGS = ['All', ...new Set(MODELS.flatMap(m => m.tags))].sort();
 
 export default function ModelsPage() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedProvider, setSelectedProvider] = useState('All')
-  const [selectedType, setSelectedType] = useState('All')
-  const [selectedTag, setSelectedTag] = useState('All')
-  const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedProvider, setSelectedProvider] = useState('All');
+  const [selectedType, setSelectedType] = useState('All');
+  const [selectedTag, setSelectedTag] = useState('All');
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const filteredModels = useMemo(() => {
     return MODELS.filter(model => {
-      const matchesSearch = model.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           model.id.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchesProvider = selectedProvider === 'All' || model.provider === selectedProvider
-      const matchesType = selectedType === 'All' || model.type === selectedType
-      const matchesTag = selectedTag === 'All' || model.tags.includes(selectedTag)
+      const matchesSearch =
+        model.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        model.id.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesProvider =
+        selectedProvider === 'All' || model.provider === selectedProvider;
+      const matchesType = selectedType === 'All' || model.type === selectedType;
+      const matchesTag =
+        selectedTag === 'All' || model.tags.includes(selectedTag);
 
-      return matchesSearch && matchesProvider && matchesType && matchesTag
-    })
-  }, [searchQuery, selectedProvider, selectedType, selectedTag])
+      return matchesSearch && matchesProvider && matchesType && matchesTag;
+    });
+  }, [searchQuery, selectedProvider, selectedType, selectedTag]);
 
   const handleCopyId = (id: string) => {
-    navigator.clipboard.writeText(id)
-    setCopiedId(id)
-    setTimeout(() => setCopiedId(null), 2000)
-  }
+    navigator.clipboard.writeText(id);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'language':
-        return 'bg-blue-900/30 text-blue-300'
+        return 'bg-blue-900/30 text-blue-300';
       case 'embedding':
-        return 'bg-purple-900/30 text-purple-300'
+        return 'bg-purple-900/30 text-purple-300';
       case 'image':
-        return 'bg-pink-900/30 text-pink-300'
+        return 'bg-pink-900/30 text-pink-300';
       default:
-        return 'bg-gray-900/30 text-gray-300'
+        return 'bg-gray-900/30 text-gray-300';
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -242,7 +250,9 @@ export default function ModelsPage() {
             Browse AI Gateway Models
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl">
-            Discover and compare 100+ AI models from leading providers. Filter by capabilities, pricing, and performance metrics to find the perfect model for your use case.
+            Discover and compare 100+ AI models from leading providers. Filter
+            by capabilities, pricing, and performance metrics to find the
+            perfect model for your use case.
           </p>
         </div>
 
@@ -255,7 +265,7 @@ export default function ModelsPage() {
               type="text"
               placeholder="Search models by name or ID..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-lg bg-input-bg border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
@@ -266,7 +276,9 @@ export default function ModelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Filter className="w-4 h-4 text-muted-foreground" />
-                <label className="text-sm font-medium text-foreground">Provider</label>
+                <label className="text-sm font-medium text-foreground">
+                  Provider
+                </label>
               </div>
               <div className="flex flex-wrap gap-2">
                 {PROVIDERS.map(provider => (
@@ -289,7 +301,9 @@ export default function ModelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Filter className="w-4 h-4 text-muted-foreground" />
-                <label className="text-sm font-medium text-foreground">Model Type</label>
+                <label className="text-sm font-medium text-foreground">
+                  Model Type
+                </label>
               </div>
               <div className="flex flex-wrap gap-2">
                 {MODEL_TYPES.map(type => (
@@ -312,7 +326,9 @@ export default function ModelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Filter className="w-4 h-4 text-muted-foreground" />
-                <label className="text-sm font-medium text-foreground">Capabilities</label>
+                <label className="text-sm font-medium text-foreground">
+                  Capabilities
+                </label>
               </div>
               <div className="flex flex-wrap gap-2">
                 {ALL_TAGS.map(tag => (
@@ -325,7 +341,10 @@ export default function ModelsPage() {
                         : 'bg-input-bg text-foreground hover:bg-hover-bg'
                     }`}
                   >
-                    {tag.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('-')}
+                    {tag
+                      .split('-')
+                      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                      .join('-')}
                   </button>
                 ))}
               </div>
@@ -341,15 +360,22 @@ export default function ModelsPage() {
         {/* Models Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredModels.map(model => (
-            <Card key={model.id} className="hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg">
+            <Card
+              key={model.id}
+              className="hover:border-primary/50 transition-all cursor-pointer hover:shadow-lg"
+            >
               <div className="space-y-4">
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <CardTitle className="text-base">{model.name}</CardTitle>
-                    <CardDescription className="text-xs mt-1">{model.provider}</CardDescription>
+                    <CardDescription className="text-xs mt-1">
+                      {model.provider}
+                    </CardDescription>
                   </div>
-                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${getTypeColor(model.type)}`}>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full font-medium ${getTypeColor(model.type)}`}
+                  >
                     {model.type === 'language' && 'LLM'}
                     {model.type === 'embedding' && 'Embed'}
                     {model.type === 'image' && 'Image'}
@@ -386,7 +412,9 @@ export default function ModelsPage() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Max Output</div>
+                    <div className="text-xs text-muted-foreground">
+                      Max Output
+                    </div>
                     <div className="text-sm font-semibold text-foreground">
                       {model.maxTokens.toLocaleString()} tokens
                     </div>
@@ -396,15 +424,25 @@ export default function ModelsPage() {
                 {/* Pricing */}
                 {model.pricing && (
                   <div className="space-y-2 pt-2 border-t border-border">
-                    <div className="text-xs text-muted-foreground">Pricing (per 1M tokens)</div>
+                    <div className="text-xs text-muted-foreground">
+                      Pricing (per 1M tokens)
+                    </div>
                     <div className="flex gap-4">
                       <div>
-                        <div className="text-xs text-muted-foreground">Input</div>
-                        <div className="text-sm font-semibold text-foreground">${model.pricing.input}</div>
+                        <div className="text-xs text-muted-foreground">
+                          Input
+                        </div>
+                        <div className="text-sm font-semibold text-foreground">
+                          ${model.pricing.input}
+                        </div>
                       </div>
                       <div>
-                        <div className="text-xs text-muted-foreground">Output</div>
-                        <div className="text-sm font-semibold text-foreground">${model.pricing.output}</div>
+                        <div className="text-xs text-muted-foreground">
+                          Output
+                        </div>
+                        <div className="text-sm font-semibold text-foreground">
+                          ${model.pricing.output}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -413,14 +451,19 @@ export default function ModelsPage() {
                 {/* Tags */}
                 {model.tags.length > 0 && (
                   <div className="space-y-2 pt-2 border-t border-border">
-                    <div className="text-xs text-muted-foreground">Capabilities</div>
+                    <div className="text-xs text-muted-foreground">
+                      Capabilities
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {model.tags.slice(0, 3).map(tag => (
                         <span
                           key={tag}
                           className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
                         >
-                          {tag.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('-')}
+                          {tag
+                            .split('-')
+                            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                            .join('-')}
                         </span>
                       ))}
                       {model.tags.length > 3 && (
@@ -449,17 +492,19 @@ export default function ModelsPage() {
         {/* Empty State */}
         {filteredModels.length === 0 && (
           <div className="text-center py-16">
-            <div className="text-lg text-muted-foreground mb-2">No models found</div>
+            <div className="text-lg text-muted-foreground mb-2">
+              No models found
+            </div>
             <p className="text-sm text-muted-foreground mb-6">
               Try adjusting your filters or search query
             </p>
             <Button
               variant="secondary"
               onClick={() => {
-                setSearchQuery('')
-                setSelectedProvider('All')
-                setSelectedType('All')
-                setSelectedTag('All')
+                setSearchQuery('');
+                setSelectedProvider('All');
+                setSelectedType('All');
+                setSelectedTag('All');
               }}
             >
               Clear Filters
@@ -468,5 +513,5 @@ export default function ModelsPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
